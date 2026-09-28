@@ -96,6 +96,7 @@
   var heroSection = document.querySelector(".hero-inner");
   var heroImg = document.querySelector(".hero-banner-bg img");
   var heroContent = document.querySelector(".hero-content");
+  var heroSpotlight = document.getElementById("heroSpotlight");
   if (!heroSection || !heroImg) return;
 
   var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -121,6 +122,11 @@
       var panX = hovering ? (lastX - 0.5) * MAX_PAN : 0;
       var panY = hovering ? (lastY - 0.5) * MAX_PAN : 0;
       heroContent.style.transform = "translate(" + panX + "px, " + panY + "px)";
+    }
+    if (heroSpotlight) {
+      heroSpotlight.style.setProperty("--spot-x", originX + "%");
+      heroSpotlight.style.setProperty("--spot-y", originY + "%");
+      heroSpotlight.classList.toggle("is-active", hovering);
     }
   }
 

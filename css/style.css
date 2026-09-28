@@ -136,6 +136,12 @@ a {
     linear-gradient(180deg, #050403 0%, #120d08 55%, #050403 100%);
   transform-origin: center;
   will-change: transform;
+  animation: intro-door-drift 6s ease-in-out infinite alternate;
+}
+
+@keyframes intro-door-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
 }
 
 .intro-door-frame {
@@ -200,9 +206,11 @@ a {
   font-size: clamp(1.4rem, 4.6vw, 2.3rem);
   line-height: 1.3;
   color: #f5efe4;
-  margin: 0 0 40px;
-  transform-origin: center;
-  will-change: transform, filter, opacity;
+  margin: 0;
+  opacity: 0;
+  transform: scale(0.94);
+  filter: blur(6px);
+  animation: intro-text-in 1.4s ease-out 0.3s forwards;
 }
 
 .intro-cable-text .cable-text-highlight {
@@ -211,163 +219,12 @@ a {
   font-weight: 700;
 }
 
-.drag-rail {
-  position: relative;
-  width: 4px;
-  height: 150px;
-  margin: 0 auto 10px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.12);
-  overflow: visible;
-}
-
-.drag-rail-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 0;
-  border-radius: 2px;
-  background: var(--color-amber);
-  box-shadow: 0 0 10px rgba(224, 164, 88, 0.65), 0 0 22px rgba(224, 164, 88, 0.3);
-  pointer-events: none;
-}
-
-/* Puxador em formato de maçaneta: um disco com uma "haste" saindo pro
-   lado, lembrando o gesto de girar/puxar uma porta. */
-.drag-handle {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 44px;
-  height: 44px;
-  margin-left: -22px;
-  cursor: grab;
-  touch-action: none;
-  will-change: transform;
-  z-index: 2;
-}
-
-.drag-handle:active {
-  cursor: grabbing;
-}
-
-.drag-handle-ring {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-  pointer-events: none;
-}
-
-.drag-handle-ring-track {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.16);
-  stroke-width: 2.5;
-}
-
-.drag-handle-ring-fill {
-  fill: none;
-  stroke: var(--color-amber);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-dasharray: 113.097;
-  stroke-dashoffset: 113.097;
-  filter: drop-shadow(0 0 4px rgba(224, 164, 88, 0.6));
-}
-
-.drag-handle-core {
-  position: absolute;
-  inset: 9px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 28%, #f3d9b0, #a9683a 55%, #5c3a1e 100%);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(0, 0, 0, 0.18);
-}
-
-.drag-handle-core::after {
-  content: "";
-  position: absolute;
-  inset: 32%;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
-}
-
-.drag-rail-mark {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 24px;
-  height: 2px;
-  margin-left: -12px;
-  border-radius: 1px;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-50%);
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-  pointer-events: none;
-}
-
-.drag-rail-mark-plate {
-  position: absolute;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  margin-top: -3.5px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-}
-
-.drag-rail-mark-plate-left { left: -3px; }
-.drag-rail-mark-plate-right { right: -3px; }
-
-.drag-rail-mark.is-reached {
-  background: var(--color-amber);
-  box-shadow: 0 0 8px rgba(224, 164, 88, 0.65);
-}
-
-.drag-rail-mark.is-reached .drag-rail-mark-plate {
-  background: var(--color-amber);
-  box-shadow: 0 0 8px rgba(224, 164, 88, 0.65);
-}
-
-.drag-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  transition: opacity 0.25s ease;
-}
-
-.drag-hint-label {
-  font-family: var(--font-base);
-  font-size: clamp(14px, 4vw, 16px);
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #f5efe4;
-}
-
-.drag-hint-arrows {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.drag-hint-arrows span {
-  font-size: 13px;
-  line-height: 1;
-  color: #f5efe4;
-  animation: drag-arrow-blink 1.3s ease-in-out infinite;
-}
-
-.drag-hint-arrows span:nth-child(2) { animation-delay: 0.15s; }
-.drag-hint-arrows span:nth-child(3) { animation-delay: 0.3s; }
-
-@keyframes drag-arrow-blink {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
+@keyframes intro-text-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
 }
 
 /* Interruptor de luz: aparece só depois do checkpoint, com um leve pulso

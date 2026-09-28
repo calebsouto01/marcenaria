@@ -31,9 +31,8 @@
   <section id="intro-hero" class="intro-hero">
     <div class="intro-hero-sticky">
 
-      <!-- Camada 1: entrada escura de uma casa. O usuário arrasta a
-           maçaneta pelo trilho; ao arrastar, a cena ganha profundidade
-           (scale no fundo) simulando avançar para dentro do ambiente. -->
+      <!-- Camada 1: entrada escura de uma casa. Só o interruptor —
+           um clique acende a luz e revela o ambiente. -->
       <div class="intro-layer" id="introLayer">
         <div class="intro-door-bg" id="introDoorBg" aria-hidden="true"></div>
         <div class="intro-door-frame" aria-hidden="true"></div>
@@ -43,33 +42,9 @@
           <p class="intro-cable-text" id="introCableText">
             Por dentro, cada <span class="cable-text-highlight">detalhe</span> foi pensado.
           </p>
-
-          <div class="drag-rail">
-            <div class="drag-rail-fill" id="dragRailFill"></div>
-            <div class="drag-rail-mark" id="dragRailMark">
-              <span class="drag-rail-mark-plate drag-rail-mark-plate-left"></span>
-              <span class="drag-rail-mark-plate drag-rail-mark-plate-right"></span>
-            </div>
-            <div class="drag-handle" id="dragHandle">
-              <svg class="drag-handle-ring" viewBox="0 0 44 44" aria-hidden="true">
-                <circle class="drag-handle-ring-track" cx="22" cy="22" r="18" />
-                <circle class="drag-handle-ring-fill" id="dragHandleRingFill" cx="22" cy="22" r="18" />
-              </svg>
-              <span class="drag-handle-core"></span>
-            </div>
-          </div>
-          <p class="drag-hint" id="dragHint">
-            <span class="drag-hint-label" id="dragHintLabel">Entre</span>
-            <span class="drag-hint-arrows" aria-hidden="true">
-              <span>&#8964;</span>
-              <span>&#8964;</span>
-              <span>&#8964;</span>
-            </span>
-          </p>
         </div>
 
-        <!-- Etapa 2: interruptor clicável, só ativo depois do checkpoint -->
-        <button type="button" class="light-switch" id="lightSwitch" aria-label="Acender a luz e ver a Casa Di Lorenzo">
+        <button type="button" class="light-switch is-active" id="lightSwitch" aria-label="Acender a luz e ver a Casa Di Lorenzo">
           <span class="light-switch-label">Acenda a luz</span>
           <span class="light-switch-plate">
             <span class="light-switch-toggle"></span>

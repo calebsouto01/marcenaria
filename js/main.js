@@ -87,9 +87,11 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 
-// Parallax 3D do banner do hero: a foto e o texto reagem sutilmente à
-// posição do mouse, dando profundidade sem precisar de WebGL. Ignorado em
-// touch (sem cursor contínuo) e quando o usuário prefere menos movimento.
+// Efeito de aproximação no banner do hero: ao passar o mouse sobre uma
+// peça da foto, a imagem dá um zoom nascendo exatamente daquele ponto
+// (transform-origin dinâmico), como se o usuário andasse até ali pra ver
+// o detalhe de perto. Ignorado em touch e quando o usuário prefere menos
+// movimento.
 (function () {
   var heroSection = document.querySelector(".hero-inner");
   var heroImg = document.querySelector(".hero-banner-bg img");
@@ -100,25 +102,32 @@
   var hasFinePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
   if (prefersReducedMotion || !hasFinePointer) return;
 
-  var MAX_TILT = 7; // graus
-  var MAX_PAN = 14; // px de deslocamento do texto (parallax oposto, reforça profundidade)
+  var REST_SCALE = 1.08;
+  var APPROACH_SCALE = 1.32; // zoom ao "chegar perto" da peça sob o cursor
+  var MAX_PAN = 10; // px de deslocamento do texto (parallax oposto, reforça profundidade)
   var ticking = false;
+  var hovering = false;
   var lastX = 0.5;
   var lastY = 0.5;
 
   function update() {
     ticking = false;
-    var rotateY = (lastX - 0.5) * MAX_TILT * 2;
-    var rotateX = (0.5 - lastY) * MAX_TILT * 2;
-    heroImg.style.transform = "scale(1.08) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+    var scale = hovering ? APPROACH_SCALE : REST_SCALE;
+    var originX = hovering ? lastX * 100 : 50;
+    var originY = hovering ? lastY * 100 : 50;
+    heroImg.style.transformOrigin = originX + "% " + originY + "%";
+    heroImg.style.transform = "scale(" + scale + ")";
     if (heroContent) {
-      heroContent.style.transform = "translate(" + (lastX - 0.5) * MAX_PAN + "px, " + (lastY - 0.5) * MAX_PAN + "px)";
+      var panX = hovering ? (lastX - 0.5) * MAX_PAN : 0;
+      var panY = hovering ? (lastY - 0.5) * MAX_PAN : 0;
+      heroContent.style.transform = "translate(" + panX + "px, " + panY + "px)";
     }
   }
 
   function onMouseMove(ev) {
     var rect = heroSection.getBoundingClientRect();
     if (rect.height === 0) return;
+    hovering = true;
     lastX = (ev.clientX - rect.left) / rect.width;
     lastY = (ev.clientY - rect.top) / rect.height;
     if (!ticking) {
@@ -128,8 +137,7 @@
   }
 
   function onMouseLeave() {
-    lastX = 0.5;
-    lastY = 0.5;
+    hovering = false;
     if (!ticking) {
       ticking = true;
       requestAnimationFrame(update);

@@ -427,16 +427,18 @@ a {
   overflow: hidden;
 }
 
-/* Parallax 3D sutil: JS ajusta rotateX/rotateY conforme o cursor, dando
-   sensação de profundidade na foto do hero. O scale(1.08) evita que as
-   bordas apareçam ao inclinar. transition suaviza o retorno ao centro. */
+/* Efeito de aproximação: o zoom nasce no ponto exato onde o cursor está
+   (transform-origin dinâmico via JS), simulando o usuário se aproximando
+   daquela peça específica da foto — não é uma inclinação, é uma caminhada
+   até o detalhe. Em repouso volta a um leve zoom centralizado. */
 .hero-banner-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transform: scale(1.08) rotateX(0deg) rotateY(0deg);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: scale(1.08);
+  transform-origin: 50% 50%;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform-origin 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 

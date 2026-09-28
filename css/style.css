@@ -599,11 +599,15 @@ a {
   box-shadow: 0 20px 40px rgba(40, 25, 5, 0.15);
 }
 
+/* A foto de origem é paisagem (1920x1080) — um corte em retrato 4/5
+   estreitava demais e cortava o ambiente fora. 4/3 preserva muito mais
+   da cena (balcão + parede) sem esticar nem repetir a foto do hero. */
 .sobre-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 4 / 5;
+  object-position: center 40%;
+  aspect-ratio: 4 / 3;
 }
 
 .sobre-stats {

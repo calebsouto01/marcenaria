@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Di Lorenzo — Móveis Planejados</title>
+  <meta name="description" content="Casa Di Lorenzo Móveis Planejados — projetamos, fabricamos e instalamos ambientes sob medida em Feira de Santana. Nota 5 no Google." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho flutuante -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="header-brand">Casa Di <span>Lorenzo</span></a>
+      <nav class="nav">
+        <a href="#sobre">Sobre</a>
+        <a href="#ambientes">Ambientes</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a href="#contato" class="btn btn-primary nav-cta">Solicitar Orçamento</a>
+    </div>
+  </header>
+
+  <!-- ===================== INTRO: "ENTRE E ACENDA A LUZ" ===================== -->
+  <section id="intro-hero" class="intro-hero">
+    <div class="intro-hero-sticky">
+
+      <!-- Camada 1: entrada escura de uma casa. O usuário arrasta a
+           maçaneta pelo trilho; ao arrastar, a cena ganha profundidade
+           (scale no fundo) simulando avançar para dentro do ambiente. -->
+      <div class="intro-layer" id="introLayer">
+        <div class="intro-door-bg" id="introDoorBg" aria-hidden="true"></div>
+        <div class="intro-door-frame" aria-hidden="true"></div>
+        <a href="#" id="skipIntro" class="skip-intro">Pular introdução</a>
+
+        <div class="intro-content">
+          <p class="intro-cable-text" id="introCableText">
+            Por dentro, cada <span class="cable-text-highlight">detalhe</span> foi pensado.
+          </p>
+
+          <div class="drag-rail">
+            <div class="drag-rail-fill" id="dragRailFill"></div>
+            <div class="drag-rail-mark" id="dragRailMark">
+              <span class="drag-rail-mark-plate drag-rail-mark-plate-left"></span>
+              <span class="drag-rail-mark-plate drag-rail-mark-plate-right"></span>
+            </div>
+            <div class="drag-handle" id="dragHandle">
+              <svg class="drag-handle-ring" viewBox="0 0 44 44" aria-hidden="true">
+                <circle class="drag-handle-ring-track" cx="22" cy="22" r="18" />
+                <circle class="drag-handle-ring-fill" id="dragHandleRingFill" cx="22" cy="22" r="18" />
+              </svg>
+              <span class="drag-handle-core"></span>
+            </div>
+          </div>
+          <p class="drag-hint" id="dragHint">
+            <span class="drag-hint-label" id="dragHintLabel">Entre</span>
+            <span class="drag-hint-arrows" aria-hidden="true">
+              <span>&#8964;</span>
+              <span>&#8964;</span>
+              <span>&#8964;</span>
+            </span>
+          </p>
+        </div>
+
+        <!-- Etapa 2: interruptor clicável, só ativo depois do checkpoint -->
+        <button type="button" class="light-switch" id="lightSwitch" aria-label="Acender a luz e ver a Casa Di Lorenzo">
+          <span class="light-switch-label">Acenda a luz</span>
+          <span class="light-switch-plate">
+            <span class="light-switch-toggle"></span>
+          </span>
+        </button>
+
+        <div class="light-flash" id="lightFlash" aria-hidden="true"></div>
+      </div>
+
+      <!-- Camada 2: hero real, revelado pela luz -->
+      <div class="hero-layer" id="heroLayer">
+        <div class="hero-banner-bg" aria-hidden="true">
+          <img src="assets/images/banner-hero.jpg" alt="" />
+          <div class="hero-banner-overlay"></div>
+        </div>
+        <div class="container hero-inner">
+          <div class="hero-content">
+            <p class="hero-kicker">Você acabou de entrar. Agora veja o que fizemos.</p>
+            <h1>Marcenaria feita para durar.</h1>
+            <p>Móveis planejados sob medida, com o acabamento e a atenção aos detalhes que conquistaram nota 5 no Google em Feira de Santana.</p>
+            <a href="#contato" class="btn btn-primary">Solicitar Orçamento</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== SITE PRINCIPAL ===================== -->
+  <div id="site" class="site">
+
+    <!-- Sobre -->
+    <section id="sobre" class="section">
+      <div class="container sobre-grid">
+        <div class="reveal">
+          <p class="section-hashtag">Sobre a Casa Di Lorenzo</p>
+          <h2>Projetamos. Fabricamos. Instalamos.</h2>
+          <p>
+            A Casa Di Lorenzo é uma marcenaria de móveis planejados em Feira de Santana (BA).
+            Cuidamos de cada ambiente sob medida do início ao fim: do projeto ao acabamento final,
+            sem intermediários — o que garante o controle de qualidade que os nossos clientes
+            reconhecem nota 5 no Google.
+          </p>
+          <div class="sobre-stats">
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Sob medida</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">Projeto ao acabamento</div>
+              <div class="stat-label">Sem intermediários</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">⭐ 5.0</div>
+              <div class="stat-label">Avaliação no Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="sobre-photo reveal">
+          <img src="assets/images/foto-cliente-2.jpg" alt="Showroom Casa Di Lorenzo, recepção com marcenaria planejada" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Ambientes / Serviços -->
+    <section id="ambientes" class="section section-alt">
+      <div class="container section-center reveal">
+        <p class="section-hashtag">Ambientes</p>
+        <h2>Cada cômodo, sob medida</h2>
+        <p class="section-note">Do projeto à instalação, para cada espaço da sua casa ou do seu negócio.</p>
+      </div>
+      <div class="container servicos-grid">
+        <div class="servico-card reveal">
+          <div class="servico-photo"><img src="assets/images/foto-cliente-7.jpg" alt="Cozinha planejada Casa Di Lorenzo" loading="lazy" /></div>
+          <div class="servico-body">
+            <h3>Cozinhas planejadas</h3>
+            <p>Armários, bancadas e organização funcional pensados para o seu dia a dia.</p>
+          </div>
+        </div>
+        <div class="servico-card reveal">
+          <div class="servico-photo"><img src="assets/images/banner-hero.jpg" alt="Área gourmet planejada Casa Di Lorenzo" loading="lazy" /></div>
+          <div class="servico-body">
+            <h3>Áreas gourmet</h3>
+            <p>Churrasqueira, bancada e armários integrados para receber com estilo.</p>
+          </div>
+        </div>
+        <div class="servico-card reveal">
+          <div class="servico-photo"><img src="assets/images/foto-cliente-5.jpg" alt="Quarto planejado Casa Di Lorenzo" loading="lazy" /></div>
+          <div class="servico-body">
+            <h3>Quartos e closets</h3>
+            <p>Cabeceiras, criados-mudos e armários que aproveitam cada centímetro.</p>
+          </div>
+        </div>
+        <div class="servico-card reveal">
+          <div class="servico-photo"><img src="assets/images/foto-cliente-9.jpg" alt="Sala planejada Casa Di Lorenzo" loading="lazy" /></div>
+          <div class="servico-body">
+            <h3>Salas de estar</h3>
+            <p>Painéis de TV, estantes e marcenaria que valorizam o ambiente.</p>
+          </div>
+        </div>
+        <div class="servico-card reveal">
+          <div class="servico-photo"><img src="assets/images/foto-cliente-8.jpg" alt="Móvel planejado sala de estar Casa Di Lorenzo" loading="lazy" /></div>
+          <div class="servico-body">
+            <h3>Móveis planejados</h3>
+            <p>Soluções personalizadas para qualquer ambiente, do projeto à instalação.</p>
+          </div>
+        </div>
+        <div class="servico-card reveal">
+          <div class="servico-photo"><img src="assets/images/foto-cliente-6.jpg" alt="Marcenaria comercial Casa Di Lorenzo" loading="lazy" /></div>
+          <div class="servico-body">
+            <h3>Projetos comerciais</h3>
+            <p>Lojas e ambientes corporativos com marcenaria sob medida.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section id="portfolio" class="section">
+      <div class="container section-center reveal">
+        <p class="section-hashtag">Portfólio</p>
+        <h2>Projetos entregues</h2>
+        <p class="section-note">Uma amostra do que já fizemos para nossos clientes.</p>
+      </div>
+      <div class="container reveal">
+        <div class="gallery-viewport">
+          <div class="gallery">
+            <div class="gallery-item"><img src="assets/images/foto-cliente-2.jpg" alt="Recepção planejada" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-3.jpg" alt="Cozinha planejada" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-5.jpg" alt="Quarto planejado" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-6.jpg" alt="Loja planejada" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-7.jpg" alt="Área gourmet planejada" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-8.jpg" alt="Sala planejada" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-9.jpg" alt="Sala de estar planejada" loading="lazy" /></div>
+            <!-- repetido para o loop de rolagem ficar contínuo -->
+            <div class="gallery-item"><img src="assets/images/foto-cliente-2.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-3.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-5.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-6.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-7.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-8.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
+            <div class="gallery-item"><img src="assets/images/foto-cliente-9.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="section section-alt">
+      <div class="container section-center reveal">
+        <p class="section-hashtag">Depoimentos</p>
+        <h2>O que dizem nossos clientes</h2>
+        <div class="google-badge">⭐⭐⭐⭐⭐ Nota 5.0 no Google</div>
+      </div>
+      <div class="container depoimentos-grid">
+        <div class="depoimento-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Superou minhas expectativas. Acabamento impecável e prazo cumprido à risca."</p>
+          <div class="depoimento-nome">Cliente Google</div>
+        </div>
+        <div class="depoimento-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Profissionalismo do início ao fim, desde o projeto até a instalação."</p>
+          <div class="depoimento-nome">Cliente Google</div>
+        </div>
+        <div class="depoimento-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Móveis planejados de altíssima qualidade. Recomendo de olhos fechados."</p>
+          <div class="depoimento-nome">Cliente Google</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato / Localização -->
+    <section id="contato" class="section">
+      <div class="container section-center reveal">
+        <p class="section-hashtag">Contato</p>
+        <h2>Vamos planejar o seu ambiente</h2>
+        <p class="section-note">Fale com a gente e peça seu orçamento sem compromisso.</p>
+      </div>
+      <div class="container reveal localizacao-grid">
+        <div class="localizacao-info">
+          <h3>Casa Di Lorenzo Móveis Planejados</h3>
+          <p>R. Quito, Santo Antônio dos Prazeres<br />Feira de Santana - BA, 40301-110</p>
+          <p>⭐ Nota 5.0 no Google</p>
+          <a href="https://wa.me/5575000000000" class="btn btn-primary" style="align-self:flex-start;margin-top:12px;">Falar no WhatsApp</a>
+        </div>
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps?q=CASA+DI+LORENZO+M%C3%93VEIS+PLANEJADOS+FEIRA+DE+SANTANA&output=embed"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização Casa Di Lorenzo no Google Maps"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">Casa Di Lorenzo — Ambientes sob medida</span>
+      <p>&copy; <span id="year"></span> Casa Di Lorenzo Móveis Planejados. Feira de Santana - BA.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5575000000000" id="whatsapp-float" class="whatsapp-float" hidden>WhatsApp</a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

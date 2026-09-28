@@ -11,6 +11,12 @@
 
   if (!introLayer || !heroLayer) return;
 
+  // Toda atualização de página recomeça do topo, com a intro do zero — sem
+  // isso, o navegador tenta restaurar a posição de rolagem anterior, mas o
+  // scroll-lock abaixo prende o usuário ali, fora do alcance do interruptor.
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+
   var REVEAL_DURATION = 750; // ms — duração do corte de luz ao clicar no interruptor
   var HERO_CLIP_MAX = 150; // % — mesmo valor usado em .hero-layer.is-revealed no CSS
 

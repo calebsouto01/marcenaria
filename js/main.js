@@ -87,6 +87,59 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 
+// Parallax 3D do banner do hero: a foto e o texto reagem sutilmente à
+// posição do mouse, dando profundidade sem precisar de WebGL. Ignorado em
+// touch (sem cursor contínuo) e quando o usuário prefere menos movimento.
+(function () {
+  var heroSection = document.querySelector(".hero-inner");
+  var heroImg = document.querySelector(".hero-banner-bg img");
+  var heroContent = document.querySelector(".hero-content");
+  if (!heroSection || !heroImg) return;
+
+  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasFinePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+  if (prefersReducedMotion || !hasFinePointer) return;
+
+  var MAX_TILT = 7; // graus
+  var MAX_PAN = 14; // px de deslocamento do texto (parallax oposto, reforça profundidade)
+  var ticking = false;
+  var lastX = 0.5;
+  var lastY = 0.5;
+
+  function update() {
+    ticking = false;
+    var rotateY = (lastX - 0.5) * MAX_TILT * 2;
+    var rotateX = (0.5 - lastY) * MAX_TILT * 2;
+    heroImg.style.transform = "scale(1.08) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg)";
+    if (heroContent) {
+      heroContent.style.transform = "translate(" + (lastX - 0.5) * MAX_PAN + "px, " + (lastY - 0.5) * MAX_PAN + "px)";
+    }
+  }
+
+  function onMouseMove(ev) {
+    var rect = heroSection.getBoundingClientRect();
+    if (rect.height === 0) return;
+    lastX = (ev.clientX - rect.left) / rect.width;
+    lastY = (ev.clientY - rect.top) / rect.height;
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  function onMouseLeave() {
+    lastX = 0.5;
+    lastY = 0.5;
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  heroSection.addEventListener("mousemove", onMouseMove);
+  heroSection.addEventListener("mouseleave", onMouseLeave);
+})();
+
 // Botão flutuante do WhatsApp: só aparece depois que o usuário rola até a
 // seção Sobre.
 (function () {

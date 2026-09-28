@@ -662,6 +662,27 @@ a {
   .servicos-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Efeito "ficheiro" (igual ao "Nosso Time" do site da academia): no
+   mobile, os cards de Ambientes deixam de ser grade e passam a empilhar
+   como um fichário — cada um gruda no topo (sticky) e o próximo sobe por
+   cima, encolhendo e escurecendo o de baixo. Só no mobile: em telas
+   maiores os cards já cabem lado a lado na grade, sem precisar empilhar. */
+@media (max-width: 639px) {
+  .servicos-grid {
+    display: block;
+    max-width: 440px;
+    margin: 32px auto 0;
+  }
+
+  .servico-card {
+    position: sticky;
+    top: 90px;
+    margin-bottom: 16px;
+    box-shadow: 0 -12px 30px rgba(40, 25, 5, 0.18);
+    will-change: transform, filter;
+  }
+}
+
 .servico-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);

@@ -160,6 +160,88 @@
   heroSection.addEventListener("mouseleave", onMouseLeave);
 })();
 
+// Ambientes no mobile: cards que empilham na rolagem, como um fichário —
+// mesmo mecanismo do "Nosso Time" do site da academia. Cada card gruda no
+// topo (position: sticky via CSS) e o card seguinte sobe por cima dele; o
+// de baixo encolhe e escurece, dando a sensação de pilha. Só roda dentro
+// da media query mobile — em telas maiores os cards já ficam lado a lado
+// na grade e o efeito é desligado.
+(function () {
+  var section = document.getElementById("ambientes");
+  if (!section) return;
+
+  var cards = Array.prototype.slice.call(section.querySelectorAll(".servico-card"));
+  if (cards.length === 0) return;
+
+  var mq = window.matchMedia("(max-width: 639px)");
+  var TOPO = 90; // mesmo valor do "top" do sticky no CSS (.servico-card)
+  var naturais = [];
+  var active = false;
+
+  function clamp(v, min, max) {
+    return Math.max(min, Math.min(max, v));
+  }
+
+  function medirPosicoesNaturais() {
+    return cards.map(function (c) {
+      var antes = c.style.position;
+      c.style.position = "static";
+      var y = c.getBoundingClientRect().top + window.scrollY;
+      c.style.position = antes;
+      return y;
+    });
+  }
+
+  function limpar() {
+    cards.forEach(function (c) {
+      c.style.transform = "";
+      c.style.filter = "";
+      c.style.zIndex = "";
+    });
+  }
+
+  var ticking = false;
+
+  function update() {
+    ticking = false;
+    if (!active) return;
+    cards.forEach(function (c, i) {
+      var vao = c.offsetHeight + 16;
+      var preso = clamp((window.scrollY + TOPO - naturais[i]) / vao, 0, 1);
+      c.style.transform = "scale(" + (1 - preso * 0.08) + ")";
+      c.style.filter = "brightness(" + (1 - preso * 0.35) + ")";
+      c.style.zIndex = i;
+    });
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  function syncMode() {
+    active = mq.matches;
+    if (active) {
+      naturais = medirPosicoesNaturais();
+      requestUpdate();
+    } else {
+      limpar();
+    }
+  }
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", function () {
+    if (active) naturais = medirPosicoesNaturais();
+    requestUpdate();
+  });
+  if (mq.addEventListener) mq.addEventListener("change", syncMode);
+  else if (mq.addListener) mq.addListener(syncMode);
+
+  syncMode();
+})();
+
 // Botão flutuante do WhatsApp: só aparece depois que o usuário rola até a
 // seção Sobre.
 (function () {

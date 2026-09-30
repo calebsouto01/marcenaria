@@ -518,6 +518,24 @@ a {
   transition: opacity 0.9s ease 0.4s;
 }
 
+/* Cada cena só existe no breakpoint pra qual foi traçada — evita que o
+   layout genérico do desktop apareça achatado no mobile (ou vice-versa). */
+.hero-scene-mobile { display: none; }
+
+@media (max-width: 640px) {
+  .hero-scene-desktop { display: none; }
+  .hero-scene-mobile { display: block; }
+}
+
+/* O vão sem porta (detalhe real que falta na obra) nunca ganha cor sólida
+   — fica só o contorno, mesmo depois do .is-filled, como um lembrete
+   visual do que ainda precisa ser instalado. */
+.hero-scene.is-filled .panel-gap {
+  background-color: transparent;
+  border-color: var(--color-amber);
+  border-style: dashed;
+}
+
 .hero-scene.is-done {
   opacity: 0;
   pointer-events: none;

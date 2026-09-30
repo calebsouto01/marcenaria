@@ -6,7 +6,12 @@
   var heroLayer = document.getElementById("heroLayer");
   var lightSwitch = document.getElementById("lightSwitch");
   var lightFlash = document.getElementById("lightFlash");
-  var heroScene = document.getElementById("heroScene");
+  var heroSceneDesktop = document.getElementById("heroSceneDesktop");
+  var heroSceneMobile = document.getElementById("heroSceneMobile");
+  var mobileSceneQuery = window.matchMedia && window.matchMedia("(max-width: 640px)");
+  function activeHeroScene() {
+    return mobileSceneQuery && mobileSceneQuery.matches ? heroSceneMobile : heroSceneDesktop;
+  }
   var header = document.querySelector(".header");
   var skipIntro = document.getElementById("skipIntro");
   var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -70,6 +75,7 @@
     // dissolvem, revelando a foto real por trás. Só decorativa (a foto já
     // está revelada por baixo pelo clip-path acima), desligada se o
     // usuário preferir menos movimento.
+    var heroScene = activeHeroScene();
     if (heroScene && !prefersReducedMotion) {
       window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 150);
       window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1450);

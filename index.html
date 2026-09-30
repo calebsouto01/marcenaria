@@ -64,10 +64,11 @@
           <div class="hero-banner-overlay"></div>
           <div class="hero-spotlight" id="heroSpotlight"></div>
 
-          <!-- Cena 3D: a parede vazia ganha os painéis do móvel planejado,
-               montando em contorno e depois preenchendo de cor — antes de
-               dissolver e revelar a foto real por trás. Só decorativa. -->
-          <div class="hero-scene" id="heroScene" aria-hidden="true">
+          <!-- Cena 3D (desktop): a parede vazia ganha os painéis da área
+               gourmet, montando em contorno e depois preenchendo de cor —
+               antes de dissolver e revelar a foto real por trás. Traçado
+               em grade, pensado pro recorte largo do banner-hero.jpg. -->
+          <div class="hero-scene hero-scene-desktop" id="heroSceneDesktop" aria-hidden="true">
             <div class="panel" style="left:6%;top:14%;width:19%;height:26%;--sx:-60vw;--sy:-20vh;--sr:-35deg;--sz:-220px;transition-delay:.05s"></div>
             <div class="panel" style="left:27%;top:14%;width:19%;height:26%;--sx:-40vw;--sy:-40vh;--sr:28deg;--sz:-180px;transition-delay:.15s"></div>
             <div class="panel" style="left:48%;top:14%;width:19%;height:26%;--sx:40vw;--sy:-40vh;--sr:-28deg;--sz:-180px;transition-delay:.25s"></div>
@@ -79,6 +80,24 @@
             <div class="panel" style="left:48%;top:58%;width:19%;height:30%;--sx:30vw;--sy:50vh;--sr:25deg;--sz:-180px;transition-delay:.85s"></div>
             <div class="panel" style="left:69%;top:58%;width:19%;height:14%;--sx:60vw;--sy:30vh;--sr:-30deg;--sz:-220px;transition-delay:.95s"></div>
             <div class="panel" style="left:69%;top:74%;width:19%;height:14%;--sx:70vw;--sy:10vh;--sr:30deg;--sz:-220px;transition-delay:1.05s"></div>
+          </div>
+
+          <!-- Cena 3D (mobile): traçado próprio, calcado na composição real
+               da foto da cozinha azul — armário superior largo + o cubo
+               menor saindo pro lado esquerdo, faixa de azulejo, bancada,
+               3 gavetas à esquerda embaixo, porta larga central, e o vão
+               ainda sem porta à direita (fica só o contorno, nunca
+               preenche — é o detalhe que falta na obra de verdade). -->
+          <div class="hero-scene hero-scene-mobile" id="heroSceneMobile" aria-hidden="true">
+            <div class="panel" style="left:2%;top:2%;width:25%;height:19%;--sx:-70vw;--sy:-30vh;--sr:-30deg;--sz:-200px;transition-delay:.05s"></div>
+            <div class="panel" style="left:29%;top:0%;width:69%;height:27%;--sx:60vw;--sy:-35vh;--sr:32deg;--sz:-220px;transition-delay:.18s"></div>
+            <div class="panel panel-shelf" style="left:2%;top:30%;width:96%;height:3%;--sx:0;--sy:-45vh;--sr:0deg;--sz:-240px;transition-delay:.32s"></div>
+            <div class="panel panel-counter" style="left:2%;top:47%;width:96%;height:6%;--sx:0;--sy:35vh;--sr:0deg;--sz:-200px;transition-delay:.45s"></div>
+            <div class="panel" style="left:2%;top:56%;width:26%;height:10%;--sx:-55vw;--sy:20vh;--sr:-25deg;--sz:-180px;transition-delay:.58s"></div>
+            <div class="panel" style="left:2%;top:67%;width:26%;height:10%;--sx:-55vw;--sy:35vh;--sr:22deg;--sz:-180px;transition-delay:.68s"></div>
+            <div class="panel" style="left:2%;top:78%;width:26%;height:10%;--sx:-55vw;--sy:50vh;--sr:-20deg;--sz:-180px;transition-delay:.78s"></div>
+            <div class="panel" style="left:30%;top:56%;width:38%;height:34%;--sx:40vw;--sy:45vh;--sr:28deg;--sz:-220px;transition-delay:.9s"></div>
+            <div class="panel panel-gap" style="left:70%;top:56%;width:28%;height:24%;--sx:60vw;--sy:20vh;--sr:-28deg;--sz:-200px;transition-delay:1.02s"></div>
           </div>
         </div>
         <div class="container hero-inner">

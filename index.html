@@ -98,26 +98,32 @@
                3 gavetas à esquerda embaixo, porta larga central, e o vão
                ainda sem porta à direita (fica só o contorno, nunca
                preenche — é o detalhe que falta na obra de verdade). -->
+          <!-- Coordenadas medidas diretamente sobre a foto (recorte visível no
+               mobile, 720x1280 -> janela 86,47 a 634,1233), convertidas para
+               o viewBox 0 0 100 177.8. Nada de "voo": cada linha já nasce na
+               posição geometricamente correta e só se autodesenha (stroke) —
+               a ideia é que o traçado sozinho, sem a foto, já reconstrua o
+               cenário com precisão. -->
           <div class="hero-scene hero-scene-mobile" id="heroSceneMobile" aria-hidden="true">
             <svg class="contour-svg" viewBox="0 0 100 177.8" preserveAspectRatio="none" aria-hidden="true">
               <!-- cubo do armário superior esquerdo -->
-              <path class="contour-path" pathLength="1" style="--sx:16vw;--sy:10vh;--sr:-9deg;--sz:640px;transition-delay:.05s" d="M4,5 L4,32 L23,32 L23,10 L31,10 L31,32 M23,32 L23,10 L4,5" />
+              <path class="contour-path" pathLength="1" style="transition-delay:.05s" d="M9.9,18.4 L39,0 L39,40.6 L15.3,42.4 Z" />
               <!-- armário superior largo (portas) -->
-              <path class="contour-path" pathLength="1" style="--sx:-14vw;--sy:9vh;--sr:8deg;--sz:620px;transition-delay:.2s" d="M31,2 L96,6 L96,33 L31,32 Z" />
-              <path class="contour-path" pathLength="1" style="--sx:-12vw;--sy:8vh;--sr:6deg;--sz:560px;transition-delay:.35s" d="M48,3 L48,32.5 M64,4 L64,33 M80,5 L80,33.2" />
-              <!-- faixa de azulejo -->
-              <path class="contour-path" pathLength="1" style="--sx:0vw;--sy:5vh;--sr:0deg;--sz:480px;transition-delay:.5s" d="M4,42 L96,45" />
+              <path class="contour-path" pathLength="1" style="transition-delay:.25s" d="M39,0 L100,0 L100,61.9 L39,52.9 Z" />
+              <path class="contour-path" pathLength="1" style="transition-delay:.45s" d="M62.8,0 L62.8,55.9" />
+              <path class="contour-path" pathLength="1" style="transition-delay:.58s" d="M86.5,0 L86.5,58.9" />
+              <!-- linha da parede/azulejo, saindo direto do pé do armário -->
+              <path class="contour-path" pathLength="1" style="transition-delay:.72s" d="M39,52.9 L100,61.9" />
               <!-- bancada -->
-              <path class="contour-path" pathLength="1" style="--sx:0vw;--sy:4vh;--sr:-2deg;--sz:520px;transition-delay:.6s" d="M4,58 L96,62 L96,69 L4,66 Z" />
-              <!-- 3 gavetas à esquerda -->
-              <path class="contour-path" pathLength="1" style="--sx:15vw;--sy:-10vh;--sr:-10deg;--sz:640px;transition-delay:.72s" d="M4,72 L34,73 L34,168 L4,167 Z" />
-              <path class="contour-path" pathLength="1" style="--sx:13vw;--sy:-9vh;--sr:-7deg;--sz:560px;transition-delay:.82s" d="M4,100 L34,101 M4,134 L34,135" />
-              <!-- porta larga central (recebe a logo) -->
-              <path class="contour-path" pathLength="1" style="--sx:-4vw;--sy:-9vh;--sr:9deg;--sz:600px;transition-delay:.92s" d="M37,73 L69,74 L69,168 L37,167 Z" />
-              <!-- vão ainda sem porta à direita: só o contorno, nunca preenche -->
-              <path class="contour-path contour-gap" pathLength="1" style="--sx:-14vw;--sy:-8vh;--sr:-11deg;--sz:640px;transition-delay:1.05s" d="M72,75 L96,77 L96,160 L72,158 Z" />
+              <path class="contour-path" pathLength="1" style="transition-delay:.85s" d="M17.2,90.4 L100,97.9 L100,124.8 L17.2,97.9 Z" />
+              <!-- gavetas à esquerda -->
+              <path class="contour-path" pathLength="1" style="transition-delay:1s" d="M17.2,97.1 L60.9,109.9 L53.6,157.9 L17.2,177.8 Z" />
+              <path class="contour-path" pathLength="1" style="transition-delay:1.12s" d="M17.2,117.4 L57.3,117.4 M17.2,127.9 L55,127.9 M17.2,138.3 L54,138.3" />
+              <!-- vão ainda sem porta à direita: o detalhe real que falta na obra — nunca fecha, fica só o contorno -->
+              <path class="contour-path contour-gap" pathLength="1" style="transition-delay:1.25s" d="M55.5,127.1 L97.4,118.9 L100,177.8 L46.4,177.4 Z" />
             </svg>
-            <div class="hero-signature" id="heroSignatureMobile" style="left:37%;top:41%;width:32%;height:53%">
+            <!-- a logo nasce na porta de verdade do armário superior (não inventamos uma porta que não existe na foto) -->
+            <div class="hero-signature" id="heroSignatureMobile" style="left:86.5%;top:2%;width:13.5%;height:56%">
               <svg viewBox="0 0 100 100" aria-hidden="true">
                 <path class="sig-path" pathLength="1" d="M10,64 L50,24 L90,64 M10,64 L10,92 M90,64 L90,92" />
                 <circle class="sig-path" pathLength="1" cx="50" cy="58" r="15" />

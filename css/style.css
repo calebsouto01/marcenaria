@@ -649,15 +649,11 @@ a {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   filter: drop-shadow(0 0 2px rgba(224, 164, 88, 0.5));
-  transform-box: fill-box;
-  transform-origin: 50% 50%;
-  transform: translate3d(var(--sx, 0), var(--sy, 0), var(--sz, 0px)) rotate(var(--sr, 0deg));
-  transition: stroke-dashoffset 0.9s ease, transform 1.05s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: stroke-dashoffset 0.9s ease;
 }
 
 .hero-scene.is-assembling .contour-path {
   stroke-dashoffset: 0;
-  transform: translate3d(0, 0, 0) rotate(0deg);
 }
 
 /* O vão ainda sem porta nunca deixa de ser tracejado — lembra o detalhe
@@ -669,7 +665,7 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .hero-scene { transition: opacity 0.4s ease; }
   .panel { transition: opacity 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
-  .contour-path { transition: none; stroke-dashoffset: 0; transform: translate3d(0, 0, 0) rotate(0deg); }
+  .contour-path { transition: none; stroke-dashoffset: 0; }
 }
 
 .hero-content {

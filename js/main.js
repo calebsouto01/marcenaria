@@ -6,8 +6,10 @@
   var heroLayer = document.getElementById("heroLayer");
   var lightSwitch = document.getElementById("lightSwitch");
   var lightFlash = document.getElementById("lightFlash");
+  var heroScene = document.getElementById("heroScene");
   var header = document.querySelector(".header");
   var skipIntro = document.getElementById("skipIntro");
+  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (!introLayer || !heroLayer) return;
 
@@ -62,6 +64,18 @@
       heroLayer.classList.add("is-revealed");
       heroLayer.style.clipPath = "circle(" + HERO_CLIP_MAX + "% at 82% 28%)";
       heroLayer.style.pointerEvents = "auto";
+    }
+
+    // Cena 3D: parede vazia → painéis montam o móvel → preenchem de cor →
+    // dissolvem, revelando a foto real por trás. Só decorativa (a foto já
+    // está revelada por baixo pelo clip-path acima), desligada se o
+    // usuário preferir menos movimento.
+    if (heroScene && !prefersReducedMotion) {
+      window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 150);
+      window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1450);
+      window.setTimeout(function () { heroScene.classList.add("is-done"); }, 2450);
+    } else if (heroScene) {
+      heroScene.classList.add("is-done");
     }
 
     window.setTimeout(function () {

@@ -721,8 +721,26 @@ a {
 }
 
 @media (max-width: 640px) {
+  /* Em vez de revelar o ambiente inteiro (o que sempre vai ler como foto
+     de catálogo/Maps), o mobile mostra só um detalhe fechado e bem
+     composto — torneira, cuba e bancada — como still editorial, não como
+     retrato do cômodo inteiro. */
   .hero-banner-bg img {
-    object-position: 50% 65%;
+    object-position: 53% 58%;
+    transform: scale(1.85);
+  }
+
+  /* Grade de cor amarrando a foto à paleta do site: sem isso, as cores
+     originais da foto do cliente destoam do resto (âmbar/carvão) e
+     reforçam a leitura de "print solto". */
+  .hero-banner-overlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(165deg, rgba(20, 16, 11, 0.5) 0%, rgba(181, 120, 47, 0.22) 45%, rgba(20, 16, 11, 0.6) 100%);
+    mix-blend-mode: multiply;
   }
 }
 

@@ -92,40 +92,10 @@
             </div>
           </div>
 
-          <!-- Cena 3D (mobile): traçado próprio, calcado na composição real
-               da foto da cozinha azul — armário superior largo + o cubo
-               menor saindo pro lado esquerdo, faixa de azulejo, bancada,
-               3 gavetas à esquerda embaixo, porta larga central, e o vão
-               ainda sem porta à direita (fica só o contorno, nunca
-               preenche — é o detalhe que falta na obra de verdade). -->
-          <!-- Cena construída, não traçada de foto: uma parede em perspectiva
-               de um único ponto de fuga (canto superior direito), com um
-               armário superior e um inferior desenhados como caixas 3D
-               (face frontal + painel de profundidade) apoiadas nela. Tudo
-               nasce já na posição final e só se autodesenha (stroke) — o
-               ponto é a construção ser geometricamente coerente sozinha,
-               sem precisar da foto por trás para "fazer sentido". -->
-          <div class="hero-scene hero-scene-mobile" id="heroSceneMobile" aria-hidden="true">
-            <svg class="contour-svg" viewBox="0 0 100 177.8" preserveAspectRatio="none" aria-hidden="true">
-              <!-- parede: quina frontal + linhas de teto/chão convergindo pro ponto de fuga -->
-              <path class="contour-path" pathLength="1" style="transition-delay:.05s" d="M6,15 L6,160" />
-              <path class="contour-path contour-guide" pathLength="1" style="transition-delay:.2s" d="M6,15 L95,70" />
-              <path class="contour-path contour-guide" pathLength="1" style="transition-delay:.35s" d="M6,160 L95,70" />
-              <!-- armário superior: face frontal + painel de profundidade recuando pro ponto de fuga -->
-              <path class="contour-path" pathLength="1" style="transition-delay:.55s" d="M12,25 L55,25 L55,55 L12,55 Z" />
-              <path class="contour-path" pathLength="1" style="transition-delay:.78s" d="M55,25 L70,32 L70,48 L55,55" />
-              <!-- armário inferior: mesma lógica, apoiado no chão da parede -->
-              <path class="contour-path" pathLength="1" style="transition-delay:1s" d="M12,110 L55,110 L55,145 L12,145 Z" />
-              <path class="contour-path" pathLength="1" style="transition-delay:1.22s" d="M55,110 L70,118 L70,135 L55,145" />
-            </svg>
-            <!-- a logo nasce na porta do armário superior -->
-            <div class="hero-signature" id="heroSignatureMobile" style="left:15%;top:16%;width:37%;height:16%">
-              <svg viewBox="0 0 100 100" aria-hidden="true">
-                <path class="sig-path" pathLength="1" d="M10,64 L50,24 L90,64 M10,64 L10,92 M90,64 L90,92" />
-                <circle class="sig-path" pathLength="1" cx="50" cy="58" r="15" />
-              </svg>
-            </div>
-          </div>
+          <!-- Sem cena 3D no mobile por enquanto (módulo será retrabalhado
+               depois). A intro aqui é só o clip-path circular abrindo
+               direto para um recorte fechado da foto (ver CSS/JS), tratado
+               com grade de cor pra não ler como print de galeria/Maps. -->
         </div>
         <div class="container hero-inner">
           <div class="hero-content">

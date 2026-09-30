@@ -739,12 +739,12 @@ a {
      real. A logo nasce dentro dele. */
   .hero-logo-reveal {
     position: absolute;
-    right: -12%;
-    bottom: -8%;
-    width: 78vw;
-    height: 78vw;
-    max-width: 420px;
-    max-height: 420px;
+    right: -8%;
+    bottom: -14%;
+    width: 46vw;
+    height: 46vw;
+    max-width: 210px;
+    max-height: 210px;
     border-radius: 50%;
     background: radial-gradient(circle at 42% 38%, rgba(122, 115, 74, 0.55) 0%, rgba(90, 84, 52, 0.32) 45%, rgba(44, 40, 24, 0) 72%);
     display: flex;

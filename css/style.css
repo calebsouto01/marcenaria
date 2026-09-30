@@ -727,14 +727,14 @@ a {
      mobile: a marcenaria (bancada azul) como o assunto central da imagem,
      não a cena inteira do ambiente. */
   .hero-banner-bg img {
-    object-position: 54% 66%;
-    transform: scale(1.32);
+    object-position: 48% 55%;
+    transform: scale(1.15);
     animation: hero-photo-breathe 16s ease-in-out infinite alternate;
   }
 
   @keyframes hero-photo-breathe {
-    from { transform: scale(1.32); }
-    to { transform: scale(1.42); }
+    from { transform: scale(1.15); }
+    to { transform: scale(1.25); }
   }
 
   @media (prefers-reduced-motion: reduce) {

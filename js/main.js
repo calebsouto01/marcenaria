@@ -82,18 +82,26 @@
     // usuário preferir menos movimento.
     var heroScene = activeHeroScene();
     var heroSignature = activeHeroSignature();
-    if (heroScene && !prefersReducedMotion) {
-      window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 150);
-      window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1500);
+    if (!prefersReducedMotion) {
+      if (heroScene) {
+        window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 150);
+        window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1500);
+        window.setTimeout(function () { heroScene.classList.add("is-done"); }, 3350);
+      }
+      // A logo nasce sozinha mesmo sem cena 3D por trás (caso do mobile
+      // hoje, que não tem armário se montando — só o círculo com a marca).
       window.setTimeout(function () {
         if (heroSignature) heroSignature.classList.add("is-visible");
         window.setTimeout(function () {
           if (heroSignature) heroSignature.classList.add("is-drawn");
         }, 200);
-      }, 1950);
-      window.setTimeout(function () { heroScene.classList.add("is-done"); }, 3350);
-    } else if (heroScene) {
-      heroScene.classList.add("is-done");
+      }, heroScene ? 1950 : 550);
+    } else {
+      if (heroScene) heroScene.classList.add("is-done");
+      if (heroSignature) {
+        heroSignature.classList.add("is-visible");
+        heroSignature.classList.add("is-drawn");
+      }
     }
 
     window.setTimeout(function () {

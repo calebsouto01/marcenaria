@@ -92,10 +92,18 @@
             </div>
           </div>
 
-          <!-- Sem cena 3D no mobile por enquanto (módulo será retrabalhado
-               depois). A intro aqui é só o clip-path circular abrindo
-               direto para um recorte fechado da foto (ver CSS/JS), tratado
-               com grade de cor pra não ler como print de galeria/Maps. -->
+          <!-- Sem foto nenhuma no mobile: o fundo é a cor real da parede da
+               foto da fachada (CASA DI LORENZO), com um círculo translúcido
+               ancorado no canto inferior direito onde a logo nasce
+               (self-draw). Cena 3D fica pendente pra retrabalhar depois. -->
+          <div class="hero-logo-reveal" aria-hidden="true">
+            <div class="hero-signature" id="heroSignatureMobile">
+              <svg viewBox="0 0 100 100" aria-hidden="true">
+                <path class="sig-path" pathLength="1" d="M10,64 L50,24 L90,64 M10,64 L10,92 M90,64 L90,92" />
+                <circle class="sig-path" pathLength="1" cx="50" cy="58" r="15" />
+              </svg>
+            </div>
+          </div>
         </div>
         <div class="container hero-inner">
           <div class="hero-content">

@@ -788,6 +788,35 @@ a {
     width: 100%;
     height: 100%;
   }
+
+  /* Texto espalhado no espaço em vez de amontoado rente ao rodapé: o
+     título sobe para a metade da foto e o kicker/CTA descem para a base,
+     usando a altura toda da imagem em vez de só uma faixa apertada. */
+  .hero-inner {
+    align-items: stretch;
+    min-height: 60vh;
+    padding-bottom: 32px;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-content h1 {
+    margin: 0;
+  }
+
+  .hero-kicker {
+    margin: 10px 0 0;
+  }
+
+  .hero-content .btn-outline {
+    align-self: flex-start;
+  }
 }
 
 .section { padding: 72px 0; }

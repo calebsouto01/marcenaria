@@ -536,6 +536,55 @@ a {
   border-style: dashed;
 }
 
+/* Assinatura: a marca se autodesenha na porta central do armário, como um
+   artesão gravando a peça recém-construída — só aparece depois que a
+   porta já preencheu de cor, e some junto quando a cena dissolve. */
+.hero-signature {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-signature svg {
+  width: 46%;
+  height: 46%;
+  overflow: visible;
+}
+
+.hero-signature .sig-path {
+  fill: none;
+  stroke: #f5efe4;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 4px rgba(245, 239, 228, 0.5));
+  transition: stroke-dashoffset 1.1s ease;
+}
+
+.hero-signature.is-visible {
+  opacity: 1;
+}
+
+.hero-signature.is-drawn .sig-path {
+  stroke-dashoffset: 0;
+}
+
+.hero-signature.is-drawn .sig-path:last-child {
+  transition-delay: 0.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-signature { transition: opacity 0.3s ease; }
+  .hero-signature .sig-path { transition: none; stroke-dashoffset: 0; }
+}
+
 .hero-scene.is-done {
   opacity: 0;
   pointer-events: none;
@@ -560,6 +609,19 @@ a {
 .hero-scene.is-filled .panel {
   background-color: #a9683a;
   border-color: rgba(20, 16, 11, 0.5);
+}
+
+/* Linhas-guia de parede/chão: entram primeiro, ficam só como traço fino
+   (nunca preenchem) — marcam os limites do ambiente antes do armário
+   começar a se desenhar dentro dele. */
+.panel-guide {
+  border-width: 1px;
+  border-color: rgba(224, 164, 88, 0.45);
+  pointer-events: none;
+}
+
+.hero-scene.is-filled .panel-guide {
+  background-color: transparent;
 }
 
 .hero-scene.is-filled .panel-shelf,

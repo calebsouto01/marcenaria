@@ -8,9 +8,14 @@
   var lightFlash = document.getElementById("lightFlash");
   var heroSceneDesktop = document.getElementById("heroSceneDesktop");
   var heroSceneMobile = document.getElementById("heroSceneMobile");
+  var heroSignatureDesktop = document.getElementById("heroSignatureDesktop");
+  var heroSignatureMobile = document.getElementById("heroSignatureMobile");
   var mobileSceneQuery = window.matchMedia && window.matchMedia("(max-width: 640px)");
   function activeHeroScene() {
     return mobileSceneQuery && mobileSceneQuery.matches ? heroSceneMobile : heroSceneDesktop;
+  }
+  function activeHeroSignature() {
+    return mobileSceneQuery && mobileSceneQuery.matches ? heroSignatureMobile : heroSignatureDesktop;
   }
   var header = document.querySelector(".header");
   var skipIntro = document.getElementById("skipIntro");
@@ -76,10 +81,17 @@
     // está revelada por baixo pelo clip-path acima), desligada se o
     // usuário preferir menos movimento.
     var heroScene = activeHeroScene();
+    var heroSignature = activeHeroSignature();
     if (heroScene && !prefersReducedMotion) {
       window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 150);
-      window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1450);
-      window.setTimeout(function () { heroScene.classList.add("is-done"); }, 2450);
+      window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1500);
+      window.setTimeout(function () {
+        if (heroSignature) heroSignature.classList.add("is-visible");
+        window.setTimeout(function () {
+          if (heroSignature) heroSignature.classList.add("is-drawn");
+        }, 200);
+      }, 1950);
+      window.setTimeout(function () { heroScene.classList.add("is-done"); }, 3350);
     } else if (heroScene) {
       heroScene.classList.add("is-done");
     }

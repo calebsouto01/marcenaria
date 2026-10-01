@@ -1,114 +1,26 @@
-// Intro "Entre e acenda a luz": cena escura de entrada, texto surge com
-// uma animação simples (CSS), e um único clique no interruptor acende a
-// luz e revela a Casa Di Lorenzo por trás, com um flash.
+// Hero: sem intro — a cena 3D do armário (quando existe, hoje só no
+// desktop) se monta sozinha assim que a página carrega.
 (function () {
-  var introLayer = document.getElementById("introLayer");
   var heroLayer = document.getElementById("heroLayer");
-  var lightSwitch = document.getElementById("lightSwitch");
-  var lightFlash = document.getElementById("lightFlash");
   var heroSceneDesktop = document.getElementById("heroSceneDesktop");
   var heroSceneMobile = document.getElementById("heroSceneMobile");
   var mobileSceneQuery = window.matchMedia && window.matchMedia("(max-width: 640px)");
   function activeHeroScene() {
     return mobileSceneQuery && mobileSceneQuery.matches ? heroSceneMobile : heroSceneDesktop;
   }
-  var header = document.querySelector(".header");
-  var skipIntro = document.getElementById("skipIntro");
   var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (!introLayer || !heroLayer) return;
+  if (!heroLayer) return;
 
-  // Toda atualização de página recomeça do topo, com a intro do zero — sem
-  // isso, o navegador tenta restaurar a posição de rolagem anterior, mas o
-  // scroll-lock abaixo prende o usuário ali, fora do alcance do interruptor.
-  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  window.scrollTo(0, 0);
-
-  var REVEAL_DURATION = 750; // ms — duração do corte de luz ao clicar no interruptor
-  var HERO_CLIP_MAX = 150; // % — mesmo valor usado em .hero-layer.is-revealed no CSS
-
-  var revealed = false;
-  var revealing = false;
-
-  function preventScroll(ev) {
-    ev.preventDefault();
-  }
-
-  function lockScroll() {
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-    window.addEventListener("wheel", preventScroll, { passive: false });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
-  }
-
-  function unlockScroll() {
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
-    window.removeEventListener("wheel", preventScroll, { passive: false });
-    window.removeEventListener("touchmove", preventScroll, { passive: false });
-  }
-
-  lockScroll();
-
-  // Acende a luz: flash instantâneo no interruptor + máscara circular de
-  // clip-path nascendo a partir do ponto do interruptor até cobrir a tela.
-  function triggerReveal() {
-    if (revealed || revealing) return;
-    revealing = true;
-
-    if (lightFlash) {
-      lightFlash.classList.remove("is-flashing");
-      void lightFlash.offsetWidth; // reinicia a animação
-      lightFlash.classList.add("is-flashing");
+  var heroScene = activeHeroScene();
+  if (!prefersReducedMotion) {
+    if (heroScene) {
+      window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 250);
+      window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1600);
+      window.setTimeout(function () { heroScene.classList.add("is-done"); }, 3450);
     }
-    if (lightSwitch) lightSwitch.style.pointerEvents = "none";
-    if (introLayer) introLayer.style.pointerEvents = "none";
-
-    if (heroLayer) {
-      heroLayer.style.transition = "clip-path " + REVEAL_DURATION + "ms cubic-bezier(0.65, 0, 0.35, 1)";
-      heroLayer.classList.add("is-revealed");
-      heroLayer.style.clipPath = "circle(" + HERO_CLIP_MAX + "% at 82% 28%)";
-      heroLayer.style.pointerEvents = "auto";
-    }
-
-    // Cena 3D: parede vazia → painéis montam o móvel → preenchem de cor →
-    // dissolvem, revelando a foto real por trás. Só decorativa (a foto já
-    // está revelada por baixo pelo clip-path acima), desligada se o
-    // usuário preferir menos movimento.
-    var heroScene = activeHeroScene();
-    if (!prefersReducedMotion) {
-      if (heroScene) {
-        window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 150);
-        window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1500);
-        window.setTimeout(function () { heroScene.classList.add("is-done"); }, 3350);
-      }
-    } else {
-      if (heroScene) heroScene.classList.add("is-done");
-    }
-
-    window.setTimeout(function () {
-      revealed = true;
-      revealing = false;
-      unlockScroll();
-      if (header) header.classList.add("is-visible");
-      if (heroLayer) {
-        heroLayer.style.transition = "";
-        heroLayer.style.clipPath = "";
-      }
-    }, REVEAL_DURATION);
-  }
-
-  if (lightSwitch) {
-    lightSwitch.addEventListener("click", function () {
-      if (!revealed && !revealing) triggerReveal();
-    });
-  }
-
-  if (skipIntro) {
-    skipIntro.addEventListener("click", function (ev) {
-      ev.preventDefault();
-      if (!revealed && !revealing) triggerReveal();
-    });
+  } else if (heroScene) {
+    heroScene.classList.add("is-done");
   }
 
   var yearEl = document.getElementById("year");

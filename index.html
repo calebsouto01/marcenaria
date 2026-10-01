@@ -27,35 +27,11 @@
     </div>
   </header>
 
-  <!-- ===================== INTRO: "ENTRE E ACENDA A LUZ" ===================== -->
+  <!-- ===================== HERO ===================== -->
   <section id="intro-hero" class="intro-hero">
     <div class="intro-hero-sticky">
 
-      <!-- Camada 1: entrada escura de uma casa. Só o interruptor —
-           um clique acende a luz e revela o ambiente. -->
-      <div class="intro-layer" id="introLayer">
-        <div class="intro-door-bg" id="introDoorBg" aria-hidden="true"></div>
-        <div class="intro-door-frame" aria-hidden="true"></div>
-        <a href="#" id="skipIntro" class="skip-intro">Pular introdução</a>
-
-        <div class="intro-content">
-          <p class="intro-cable-text" id="introCableText">
-            Você entra em casa. A luz ainda não acendeu. O que você espera que ela <span class="cable-text-highlight">revele</span>?
-          </p>
-        </div>
-
-        <button type="button" class="light-switch is-active" id="lightSwitch" aria-label="Acender a luz e ver a Casa Di Lorenzo">
-          <span class="light-switch-label">Acenda a luz</span>
-          <span class="light-switch-plate">
-            <span class="light-switch-toggle"></span>
-          </span>
-        </button>
-
-        <div class="light-flash" id="lightFlash" aria-hidden="true"></div>
-      </div>
-
-      <!-- Camada 2: hero real, revelado pela luz -->
-      <div class="hero-layer" id="heroLayer">
+      <div class="hero-layer is-revealed" id="heroLayer">
         <div class="hero-banner-bg" aria-hidden="true">
           <picture>
             <source media="(max-width: 640px)" srcset="assets/images/foto-cozinha-azul-mobile.jpg" />

@@ -94,7 +94,7 @@ a {
   border-color: rgba(250, 246, 240, 0.6);
 }
 
-/* ===================== INTRO: "ENTRE E ACENDA A LUZ" ===================== */
+/* ===================== HERO ===================== */
 
 .intro-hero {
   position: relative;
@@ -112,210 +112,13 @@ a {
   perspective: 1200px;
 }
 
-.intro-layer,
 .hero-layer {
   position: absolute;
   inset: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.intro-layer {
-  z-index: 1;
-}
-
-/* Camada de fundo escura simulando a entrada de uma casa/oficina à noite,
-   com um leve ganho de profundidade (scale/translateZ) enquanto o usuário
-   arrasta a maçaneta — dá a sensação de avançar para dentro da cena, sem
-   precisar de WebGL. */
-.intro-door-bg {
-  position: absolute;
-  inset: -6%;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse at 50% 62%, rgba(224, 164, 88, 0.08) 0%, transparent 45%),
-    linear-gradient(180deg, #050403 0%, #120d08 55%, #050403 100%);
-  transform-origin: center;
-  will-change: transform;
-  animation: intro-door-drift 6s ease-in-out infinite alternate;
-}
-
-@keyframes intro-door-drift {
-  from { transform: scale(1); }
-  to { transform: scale(1.05); }
-}
-
-.intro-door-frame {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: min(420px, 60vw);
-  height: 78vh;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, #1c140c 0%, #0c0804 100%);
-  border: 1px solid rgba(224, 164, 88, 0.18);
-  border-bottom: none;
-  border-radius: 120px 120px 0 0;
-  box-shadow: 0 0 80px rgba(0, 0, 0, 0.6) inset;
-  z-index: 1;
-}
-
-.hero-layer {
-  z-index: 2;
-  clip-path: circle(0% at 82% 28%);
-  pointer-events: none;
-  will-change: clip-path;
-  transition: clip-path 0.75s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.hero-layer.is-revealed {
-  clip-path: circle(150% at 82% 28%);
-}
-
-.skip-intro {
-  position: absolute;
-  bottom: 24px;
-  right: 20px;
-  z-index: 5;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.75);
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  text-decoration: none;
-}
-
-.skip-intro:hover,
-.skip-intro:focus-visible {
-  color: var(--color-amber);
-  border-color: var(--color-amber);
-}
-
-.intro-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 20px;
-  max-width: min(560px, 92vw);
-}
-
-.intro-cable-text {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-style: italic;
-  font-size: clamp(1.4rem, 4.6vw, 2.3rem);
-  line-height: 1.3;
-  color: #f5efe4;
-  margin: 0;
-  opacity: 0;
-  transform: scale(0.94);
-  filter: blur(6px);
-  animation: intro-text-in 1.4s ease-out 0.3s forwards;
-}
-
-.intro-cable-text .cable-text-highlight {
-  color: var(--color-amber);
-  font-style: normal;
-  font-weight: 700;
-}
-
-@keyframes intro-text-in {
-  to {
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0);
-  }
-}
-
-/* Interruptor de luz: aparece só depois do checkpoint, com um leve pulso
-   pra convidar o clique — a segunda etapa é 1 clique só, não um arraste. */
-.light-switch {
-  position: absolute;
-  z-index: 3;
-  bottom: 14%;
-  right: 12%;
-  width: 56px;
-  height: 88px;
-  border: none;
-  padding: 0;
-  background: none;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.light-switch.is-active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.light-switch-plate {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background: linear-gradient(160deg, #efe6d6, #c9b795);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: switch-pulse 1.8s ease-in-out infinite;
-}
-
-.light-switch-toggle {
-  width: 20px;
-  height: 34px;
-  border-radius: 4px;
-  background: linear-gradient(160deg, #fff8ea, #d8c49a);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes switch-pulse {
-  0%, 100% { box-shadow: 0 10px 26px rgba(224, 164, 88, 0.15), inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
-  50% { box-shadow: 0 10px 30px rgba(224, 164, 88, 0.55), inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
-}
-
-.light-switch-label {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #f5efe4;
-}
-
-/* Flash de "luz acendendo" disparado no instante do clique. */
-.light-flash {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  background: radial-gradient(circle at 82% 28%, rgba(255, 236, 200, 0.95) 0%, rgba(255, 236, 200, 0) 55%);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.light-flash.is-flashing {
-  animation: light-flash-pulse 0.6s ease-out;
-}
-
-@keyframes light-flash-pulse {
-  0% { opacity: 0; }
-  25% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@media (max-width: 640px) {
-  .drag-rail { height: 120px; }
-  .drag-handle { width: 38px; height: 38px; margin-left: -19px; }
-  .light-switch { right: 8%; width: 46px; height: 74px; }
 }
 
 /* ===================== SITE ===================== */
@@ -338,16 +141,7 @@ a {
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 12px 30px rgba(40, 25, 5, 0.12);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-8px);
-  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-
-.header.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
+  transition: box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .header-inner {

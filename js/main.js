@@ -13,7 +13,14 @@
   if (!heroLayer) return;
 
   var heroScene = activeHeroScene();
+  var headline = document.getElementById("heroHeadline");
+  if (headline) headline.classList.add("hl-ready");
+  function startHeadline() {
+    if (headline) headline.classList.add("is-in");
+  }
   function startHeroScene() {
+    // A frase de impacto entra logo depois que a montagem do armário começa.
+    window.setTimeout(startHeadline, 900);
     if (!heroScene) return;
     window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 250);
     window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1600);
@@ -26,8 +33,9 @@
     } else {
       startHeroScene();
     }
-  } else if (heroScene) {
-    heroScene.classList.add("is-done");
+  } else {
+    startHeadline();
+    if (heroScene) heroScene.classList.add("is-done");
   }
 
   var yearEl = document.getElementById("year");

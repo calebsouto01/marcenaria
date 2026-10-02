@@ -107,22 +107,6 @@
   letter-spacing: 0.38em;
   color: #e4d8bf;
 }
-.li-text .li-rule {
-  width: clamp(36px, 5vw, 64px);
-  height: 1px;
-  background: #e4d8bf;
-  opacity: 0.7;
-  margin: 1.1em auto;
-}
-.li-text .li-tag {
-  margin: 0;
-  padding-left: 0.3em;
-  font-size: clamp(7px, 0.85vw, 11px);
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  color: #e4d8bf;
-  opacity: 0.85;
-}
 .li-text > * {
   opacity: 0;
   transform: translateY(8px);
@@ -130,8 +114,6 @@
 }
 .li-text.is-on > * { opacity: 1; transform: none; }
 .li-text.is-on .li-sub { transition-delay: 0.3s; }
-.li-text.is-on .li-rule { transition-delay: 0.55s; }
-.li-text.is-on .li-tag { transition-delay: 0.8s; opacity: 0.85; }
 
 .li-skip {
   position: absolute;

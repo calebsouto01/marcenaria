@@ -1,6 +1,6 @@
 // Abertura: o logo da Casa Di Lorenzo (casa + "L" + "o", um traço contínuo)
 // nasce de peças soltas que giram no espaço 3D e se encaixam na forma final.
-// Roda uma vez por sessão; ao terminar (ou ao pular) o overlay some em fade e
+// Roda a cada carregamento da página; ao terminar (ou ao pular) o overlay some em fade e
 // dispara "logointro:done" para o hero começar a sua própria cena.
 (function () {
   var root = document.documentElement;
@@ -13,7 +13,6 @@
   function finish() {
     if (finished) return;
     finished = true;
-    try { sessionStorage.setItem("ldlIntroSeen", "1"); } catch (e) {}
     root.classList.remove("logo-intro-lock");
     if (overlay) overlay.classList.add("is-leaving");
     window.dispatchEvent(new Event("logointro:done"));

@@ -10,18 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/logo-intro.css" />
-  <!-- Abertura com o logo 3D: uma vez por sessão, nunca com "reduzir movimento".
-       Use ?intro=1 na URL para forçar. -->
+  <!-- Abertura com o logo 3D: toca a cada carregamento/atualização da página;
+       só é pulada com "reduzir movimento" ativado no aparelho. -->
   <script>
     (function () {
-      try {
-        var force = /[?&]intro=1/.test(location.search);
-        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var seen = sessionStorage.getItem("ldlIntroSeen");
-        if (force || (!reduce && !seen)) {
-          document.documentElement.classList.add("has-logo-intro", "logo-intro-lock");
-        }
-      } catch (e) {}
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce) {
+        document.documentElement.classList.add("has-logo-intro", "logo-intro-lock");
+      }
     })();
   </script>
 </head>
@@ -35,8 +31,6 @@
     <div class="li-text" id="logoIntroText">
       <h2>CASA DI LORENZO</h2>
       <p class="li-sub">AMBIENTES SOB MEDIDA</p>
-      <div class="li-rule"></div>
-      <p class="li-tag">MARCENARIA QUE CONSTRÓI CADA DETALHE</p>
     </div>
     <div class="li-vignette"></div><div class="li-grain"></div>
     <button type="button" class="li-skip" id="logoIntroSkip">PULAR</button>
@@ -65,7 +59,7 @@
         <div class="hero-banner-bg" aria-hidden="true">
           <picture>
             <source media="(max-width: 640px)" srcset="assets/images/foto-cozinha-azul-mobile.jpg" />
-            <img src="assets/images/banner-hero.jpg" alt="" />
+            <img src="assets/images/foto-cliente-4.jpg" alt="" />
           </picture>
           <div class="hero-banner-overlay"></div>
           <div class="hero-spotlight" id="heroSpotlight"></div>
@@ -94,10 +88,11 @@
         </div>
         <div class="container hero-inner">
           <div class="hero-content">
-            <div class="hero-heading-group">
-              <h1>Conforto feito para durar.</h1>
-              <p class="hero-kicker">A marcenaria entrega cada detalhe.</p>
-            </div>
+            <h1 class="hero-headline" id="heroHeadline" aria-label="Marcenaria que constrói cada detalhe.">
+              <span class="hl-line" aria-hidden="true"><span class="hl-word" style="--i:0">Marcenaria</span> <span class="hl-word" style="--i:1">que</span></span>
+              <span class="hl-line" aria-hidden="true"><span class="hl-word" style="--i:2">constrói</span> <span class="hl-word" style="--i:3">cada</span></span>
+              <span class="hl-line" aria-hidden="true"><span class="hl-word hl-accent" style="--i:4"><span class="hl-accent-text">detalhe</span><svg class="hl-underline" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 C 60 3, 130 12, 190 6 S 270 4, 298 8" /></svg></span><span class="hl-word hl-dot" style="--i:5">.</span></span>
+            </h1>
             <a href="#ambientes" class="btn btn-outline">Conheça os ambientes</a>
           </div>
         </div>

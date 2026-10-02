@@ -1,41 +1,24 @@
-// Hero: sem intro — a cena 3D do armário (quando existe, hoje só no
-// desktop) se monta sozinha assim que a página carrega.
+// Hero: a abertura do logo (js/logo-intro.js) toca primeiro; assim que ela
+// termina, a frase de impacto entra. Sem abertura (reduzir movimento ou sem
+// WebGL), a frase aparece de imediato.
 (function () {
   var heroLayer = document.getElementById("heroLayer");
-  var heroSceneDesktop = document.getElementById("heroSceneDesktop");
-  var heroSceneMobile = document.getElementById("heroSceneMobile");
-  var mobileSceneQuery = window.matchMedia && window.matchMedia("(max-width: 640px)");
-  function activeHeroScene() {
-    return mobileSceneQuery && mobileSceneQuery.matches ? heroSceneMobile : heroSceneDesktop;
-  }
+  var headline = document.getElementById("heroHeadline");
   var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (!heroLayer) return;
 
-  var heroScene = activeHeroScene();
-  var headline = document.getElementById("heroHeadline");
   if (headline) headline.classList.add("hl-ready");
   function startHeadline() {
     if (headline) headline.classList.add("is-in");
   }
-  function startHeroScene() {
-    // A frase de impacto entra logo depois que a montagem do armário começa.
-    window.setTimeout(startHeadline, 900);
-    if (!heroScene) return;
-    window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 250);
-    window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1600);
-    window.setTimeout(function () { heroScene.classList.add("is-done"); }, 3450);
-  }
-  if (!prefersReducedMotion) {
-    // Com a abertura do logo em andamento, a cena do armário espera ela acabar.
-    if (document.documentElement.classList.contains("has-logo-intro")) {
-      window.addEventListener("logointro:done", startHeroScene, { once: true });
-    } else {
-      startHeroScene();
-    }
+
+  if (!prefersReducedMotion && document.documentElement.classList.contains("has-logo-intro")) {
+    window.addEventListener("logointro:done", function () {
+      window.setTimeout(startHeadline, 250);
+    }, { once: true });
   } else {
     startHeadline();
-    if (heroScene) heroScene.classList.add("is-done");
   }
 
   var yearEl = document.getElementById("year");

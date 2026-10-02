@@ -842,3 +842,67 @@ a {
     margin: 0 0 14px;
   }
 }
+
+/* Desktop (tela larga): a foto é clara e arejada — a única zona escura é a
+   faixa dos armários, que é justamente o produto. Então o texto vai na parede
+   de azulejo (clara e uniforme, a "faixa calma" da foto), em tom espresso com
+   o âmbar da marca, e o móvel fica inteiro à vista. A frase fecha em duas
+   linhas ("Marcenaria que constrói cada" / "detalhe.") acima da prateleira de
+   madeira, e o botão entra logo abaixo dela. Posições em vw/% acompanham o
+   corte da foto; tamanhos em em mantêm a quebra de linha em qualquer largura. */
+@media (min-width: 900px) and (min-aspect-ratio: 5/4) {
+  .hero-inner {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+    padding: 0;
+    display: block;
+  }
+
+  .hero-content {
+    position: absolute;
+    left: 25vw;
+    top: 15.5%;
+    max-width: none;
+    width: 62vw;
+  }
+
+  .hero-content h1.hero-headline {
+    font-size: clamp(2.4rem, 4.2vw, 4.6rem);
+    max-width: 13.5em;
+    margin: 0 0 0.85em;
+    color: #2a2117;
+    text-shadow: none;
+  }
+
+  .hl-line {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .hl-accent-text {
+    background: linear-gradient(100deg, #a9683a 0%, #c07a2a 38%, #e0a458 50%, #c07a2a 62%, #a9683a 100%);
+    background-size: 260% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: none;
+  }
+
+  .hl-underline path {
+    stroke: #b8741f;
+    filter: none;
+  }
+
+  .hero-content .btn-outline {
+    color: #2a2117;
+    border-color: #7a4a24;
+    box-shadow: none;
+  }
+
+  .hero-content .btn-outline:hover {
+    background: #2a2117;
+    color: #fdf9f1;
+    box-shadow: none;
+  }
+}

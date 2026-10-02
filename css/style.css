@@ -561,13 +561,13 @@ a {
      não a cena inteira do ambiente. */
   .hero-banner-bg img {
     object-position: 48% 55%;
-    transform: scale(1.15);
+    transform: scale(1.04);
     animation: hero-photo-breathe 16s ease-in-out infinite alternate;
   }
 
   @keyframes hero-photo-breathe {
-    from { transform: scale(1.15); }
-    to { transform: scale(1.25); }
+    from { transform: scale(1.04); }
+    to { transform: scale(1.1); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -595,21 +595,21 @@ a {
      título sobe para a metade da foto e o kicker/CTA descem para a base,
      usando a altura toda da imagem em vez de só uma faixa apertada. */
   .hero-inner {
-    align-items: stretch;
-    min-height: 60vh;
-    padding-bottom: 32px;
+    align-items: flex-end;
+    padding-bottom: 9vh;
+    padding-bottom: 9dvh;
   }
 
   .hero-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 100%;
-    height: 100%;
   }
 
   .hero-content h1.hero-headline {
-    margin: 0 0 40px;
+    font-size: clamp(2.3rem, 10.6vw, 2.8rem);
+    margin: 0 0 18px;
   }
 
   .hero-content .btn-outline {
@@ -944,4 +944,28 @@ a {
   border-radius: 999px;
   text-decoration: none;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Mobile em pé: usa a foto vertical (hero-mobile.jpg, cozinha azul recortada
+   para ficar só nos armários/micro-ondas/pia). Os textos ficam na faixa dos
+   armários de baixo (66–91% da altura): é a área mais escura e uniforme da
+   foto, o que dá o melhor contraste para o texto branco. A faixa dos
+   armários de cima é lisa, mas curta e colada no menu. */
+@media (max-width: 640px) and (orientation: portrait) {
+  .hero-banner-bg img {
+    object-position: 92% 50%;
+  }
+}
+
+/* Celular deitado: pouca altura — frase menor e mais rente à base, sem subir
+   por baixo do menu. */
+@media (max-width: 900px) and (max-height: 480px) {
+  .hero-inner {
+    padding-bottom: 24px;
+  }
+
+  .hero-content h1.hero-headline {
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+    margin: 0 0 14px;
+  }
 }

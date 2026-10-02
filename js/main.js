@@ -13,11 +13,18 @@
   if (!heroLayer) return;
 
   var heroScene = activeHeroScene();
+  function startHeroScene() {
+    if (!heroScene) return;
+    window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 250);
+    window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1600);
+    window.setTimeout(function () { heroScene.classList.add("is-done"); }, 3450);
+  }
   if (!prefersReducedMotion) {
-    if (heroScene) {
-      window.setTimeout(function () { heroScene.classList.add("is-assembling"); }, 250);
-      window.setTimeout(function () { heroScene.classList.add("is-filled"); }, 1600);
-      window.setTimeout(function () { heroScene.classList.add("is-done"); }, 3450);
+    // Com a abertura do logo em andamento, a cena do armário espera ela acabar.
+    if (document.documentElement.classList.contains("has-logo-intro")) {
+      window.addEventListener("logointro:done", startHeroScene, { once: true });
+    } else {
+      startHeroScene();
     }
   } else if (heroScene) {
     heroScene.classList.add("is-done");

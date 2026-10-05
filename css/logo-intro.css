@@ -42,13 +42,15 @@
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000' viewBox='0 0 1600 1000'><filter id='r' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.02 .035' numOctaves='4' seed='4' result='n'/><feDiffuseLighting in='n' surfaceScale='1.6' diffuseConstant='.9' lighting-color='%23fff2dc'><feDistantLight azimuth='200' elevation='38'/></feDiffuseLighting></filter><rect width='100%' height='100%' filter='url(%23r)'/></svg>");
 }
 
-/* ripado de madeira à direita */
+/* ripado de madeira à direita — limite reto contra a parede: na obra de
+   verdade a madeira não "dissolve" na tinta, ela termina numa junta/friso.
+   Sem máscara em degradê; a borda + sombra interna vendem esse encontro. */
 .li-slats {
   left: auto; width: 26vw;
   background: repeating-linear-gradient(90deg, #3a2c20 0 1.6vw, #241a12 1.6vw 2.2vw);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 35%);
-  mask-image: linear-gradient(90deg, transparent, #000 35%);
   opacity: 0.85;
+  border-left: 2px solid rgba(10, 8, 5, 0.55);
+  box-shadow: inset 8px 0 16px rgba(0, 0, 0, 0.35);
 }
 
 /* feixe de luz quente + sombras de folhas */
@@ -66,13 +68,20 @@
     radial-gradient(26vw 5vw at 86% 72%, #000 0, transparent 70%);
 }
 
-/* bancada */
+/* bancada: mármore de verdade — veios finos e irregulares sobre uma base
+   em degradê (clara em cima pegando luz, escurece até a quina), não um
+   bloco de cor lisa. */
 .li-table {
   inset: auto -5vw 0 -5vw;
   height: 19vh;
-  background: linear-gradient(180deg, #8d7f69 0%, #6f6452 35%, #2a2118 100%);
-  border-top: 1px solid rgba(255, 235, 200, 0.25);
-  box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.35);
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='320' viewBox='0 0 900 320'><filter id='v'><feTurbulence type='fractalNoise' baseFrequency='0.01 0.09' numOctaves='2' seed='7' result='n'/><feColorMatrix in='n' type='matrix' values='0 0 0 0 1  0 0 0 0 0.98  0 0 0 0 0.92  0 0 0 9 -6.2'/></filter><rect width='100%25' height='100%25' filter='url(%23v)'/></svg>"),
+    linear-gradient(180deg, #ada194 0%, #7d7262 32%, #332b22 100%);
+  background-size: cover, 100% 100%;
+  background-position: center, center;
+  background-blend-mode: soft-light, normal;
+  border-top: 1px solid rgba(255, 235, 200, 0.3);
+  box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .li-canvas { width: 100%; height: 100%; display: block; }

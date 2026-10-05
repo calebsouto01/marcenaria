@@ -71,20 +71,63 @@
 /* mesa de pedra (igual à foto da fachada: tampo bege/travertino claro com
    o canto frontal-esquerdo arredondado, mais a face/espessura escura da
    borda por baixo — não é uma faixa reta, é uma mesa de verdade). */
-.li-table {
-  left: 4vw; right: -6vw; top: auto; bottom: 4vh;
-  height: 10vh;
-  background: linear-gradient(180deg, #ddd4c1 0%, #c7bca5 55%, #a89a82 100%);
-  border-radius: 90px 0 0 0;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 -18px 30px rgba(0, 0, 0, 0.2);
+/* Mesa de pedra (travertino) do logo do cliente: laje baixa e comprida, ponta
+   esquerda arredondada, tampo liso com a luz entrando na diagonal, borda
+   frontal grossa e áspera, base de madeira ripada escura recuada (a laje fica
+   "flutuando" sobre ela). Cores amostradas da foto: tampo #67553E–#76624A com
+   a faixa de luz em #AE9276, borda #6E5E4B, base #180F07. */
+.logo-intro {
+  --tb: clamp(22px, 3.6vh, 46px);   /* base ripada */
+  --tf: clamp(26px, 4.8vh, 60px);   /* borda frontal */
+  --tt: clamp(34px, 7vh, 88px);     /* tampo (visto em perspectiva) */
+  --stone-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='g' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .38  0 0 0 2.2 -.55'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  --stone-cloud: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='300'><filter id='c' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.006 .018' numOctaves='4' seed='9' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 .74  0 0 0 0 .63  0 0 0 0 .48  0 0 0 1.9 -.7'/></filter><rect width='100%' height='100%' filter='url(%23c)'/></svg>");
+  --stone-pits: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='p' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' seed='21' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 .1  0 0 0 0 .07  0 0 0 0 .04  -3.2 0 0 0 1.1'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>");
+  --stone-pits-rough: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='r' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='3' seed='5' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 .08  0 0 0 0 .05  0 0 0 0 .03  -4 0 0 0 1.5'/></filter><rect width='100%' height='100%' filter='url(%23r)'/></svg>");
+}
+
+.li-table-base {
+  left: 15vw; right: -6vw; top: auto; bottom: 0;
+  height: var(--tb);
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 55%),
+    repeating-linear-gradient(90deg, #2b1d11 0 3px, #170e07 3px 6px);
 }
 
 .li-table-face {
-  left: 4vw; right: -6vw; top: auto; bottom: 0;
-  height: 4vh;
-  background: linear-gradient(180deg, #938672 0%, #4a4030 100%);
-  border-radius: 0 0 0 60px;
-  box-shadow: 0 -30px 50px rgba(0, 0, 0, 0.3);
+  left: 3vw; right: -6vw; top: auto; bottom: var(--tb);
+  height: var(--tf);
+  border-radius: 0 0 0 clamp(14px, 2.2vw, 30px);
+  background-color: #6e5e4b;
+  background-image:
+    var(--stone-pits-rough),
+    var(--stone-grain),
+    var(--stone-cloud),
+    linear-gradient(90deg, rgba(40, 28, 16, 0.38) 0%, rgba(40, 28, 16, 0) 38%, rgba(190, 160, 120, 0.2) 78%, rgba(190, 160, 120, 0.08) 100%),
+    linear-gradient(180deg, rgba(210, 185, 150, 0.28) 0%, rgba(210, 185, 150, 0) 22%, rgba(0, 0, 0, 0.28) 100%);
+  background-blend-mode: multiply, overlay, soft-light, normal, normal;
+  box-shadow: 0 -2px 0 rgba(215, 192, 158, 0.35), 0 14px 22px rgba(0, 0, 0, 0.45);
+}
+
+.li-table {
+  left: 3vw; right: -6vw; top: auto; bottom: calc(var(--tb) + var(--tf));
+  height: var(--tt);
+  /* a ponta esquerda do tampo é um arco elíptico (laje redonda em perspectiva) */
+  border-top-left-radius: clamp(90px, 13vw, 220px) 100%;
+  background-color: #76624a;
+  background-image:
+    var(--stone-pits),
+    var(--stone-grain),
+    var(--stone-cloud),
+    /* sombras de folhas sobre o tampo */
+    radial-gradient(ellipse 9% 55% at 44% 62%, rgba(25, 17, 9, 0.28), transparent 70%),
+    radial-gradient(ellipse 7% 45% at 53% 30%, rgba(25, 17, 9, 0.22), transparent 70%),
+    radial-gradient(ellipse 6% 50% at 72% 70%, rgba(25, 17, 9, 0.2), transparent 70%),
+    /* faixa de luz na diagonal: #AE9276 no meio-direita, tampo mais escuro à esquerda */
+    linear-gradient(104deg, #4d3d2b 0%, #5c4a36 26%, #6e5a43 46%, #a38a6d 60%, #7d664d 72%, #65523c 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0) 40%);
+  background-blend-mode: multiply, overlay, soft-light, normal, normal, normal, normal, normal;
+  box-shadow: inset 0 1px 0 rgba(230, 210, 175, 0.4), 0 -22px 34px rgba(0, 0, 0, 0.18);
 }
 
 .li-canvas { width: 100%; height: 100%; display: block; }
